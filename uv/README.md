@@ -1,32 +1,50 @@
-# Use `uv` to create a virtual environment
+# Modern Python Package Management with uv
 
-Basic workflow for using `uv`:
-1. `uv add <package>`
+## Step-by-Step Tutorial
 
----
-
-- Install packages using `uv`:
+### 1. Initialize project with Python version
 ```bash
-uv add flask
+uv init --python 3.11
+# or just: uv init
 ```
+This creates `pyproject.toml` with specified Python version.
 
-This command will automatically create a virtual environment and add the specified package to `pyproject.toml`.
-
-- Sync the virtual environment(install dependencies from `pyproject.toml`):
+### 2. Install packages
 ```bash
-uv sync
+uv add Flask
 ```
+This automatically:
+- Creates `.venv` virtual environment with specified Python version
+- Installs Flask
+- Updates `pyproject.toml`
 
-- Run the application:
-```bash
-source .venv/bin/activate  # On macOS/Linux
-.venv\Scripts\activate  # On Windows
-source .venv/Scripts/activate  # On Windows powershell
-
-python main.py
-```
-
-- Directly run the application without activating the virtual environment:
+### 3. Run application
 ```bash
 uv run main.py
 ```
+
+That's it! No activation or deactivation needed.
+
+## For Future Package Installation
+
+```bash
+# Install new package
+uv add package-name
+
+# Run your application
+uv run main.py
+```
+
+## Setting up from existing pyproject.toml
+
+```bash
+uv sync
+uv run main.py
+```
+
+## Why uv is simpler
+
+- ✅ No manual virtual environment creation
+- ✅ No activation/deactivation needed  
+- ✅ Dependencies saved automatically to `pyproject.toml`
+- ✅ 10-100x faster than pip
